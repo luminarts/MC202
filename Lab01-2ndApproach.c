@@ -1,37 +1,87 @@
 #include <stdio.h>
 
-int saladCounter(int lista[], int listlength) {
-    int five, seven, ten = 0;
-    int consecfive, consecseven, consecten = 0;
+int saladCounter(int lista[]) {
+    int fivecounter, sevencounter, tencounter, maxcounter, highest;
 
-    for(int i = 0; i < listlength; i) {
+    fivecounter = sevencounter = tencounter = maxcounter = 0;
+
+    for(int i = 0; i < 10000; i++) {
         if (lista[i] == 5) {
-            five++;
-            consecfive++;
-            consecseven, consecten = 0;
+            sevencounter = 0;
+            tencounter = 0;
+            fivecounter++;
+            if (fivecounter > maxcounter) {
+                maxcounter = fivecounter;
+                highest = 5;
+            }
         }
-        else if (lista[i] == 7)
-        {
-            seven++;
-            consecseven++;
-            consecfive, consecten = 0;
+        else if (lista[i] == 7) {
+            fivecounter = tencounter = 0;
+            sevencounter++;
+            if (sevencounter > maxcounter) {
+                maxcounter = sevencounter;
+                highest = 7;
+            }
         }
-        else if (lista[i] == 10)
-        {
-            ten++;
-            consecten++;
-            consecfive, consecseven = 0;
+        else if (lista[i] == 10) {
+            sevencounter = fivecounter = 0;
+            tencounter++;
+            if (tencounter > maxcounter) {
+                maxcounter = tencounter;
+                highest = 10;
+            }
+        }
+        else {
+            break;
         }
     }
+
+    return highest;    
+}
+
+int fiveQuantities(int lista[], int listlength) {
+    int five = 0;
+    for(int i = 0; i < listlength; i++) {
+        if (lista[i] == 5) {
+            five++;
+        }
+    } 
+    return five;
+}
+
+int sevenQuantities(int lista[], int listlength) {
+    int seven = 0;
+    for(int i = 0; i < listlength; i++) {
+        if (lista[i] == 5) {
+            seven++;
+        }
+    } 
+    return seven;
+}
+
+int tenQuantities(int lista[], int listlength) {
+    int ten = 0;
+    for(int i = 0; i < listlength; i++) {
+        if (lista[i] == 5) {
+            ten++;
+        }
+    } 
+    return ten;
 }
 
 int main() {
-    int num, list[10000];
+    int num, sellArray[10000];
+    int highestcombo = saladCounter(sellArray);
+    int five = fiveQuantities(sellArray, num);
+    int seven = sevenQuantities(sellArray, num);
+    int ten = tenQuantities(sellArray, num);
+
     scanf("%d", &num);
     for (int i = 0; i < num; i++) {
-        scanf("%d", &list[i]);
+        scanf("%d", &sellArray[i]);
     };
-    for (int i = 0; i < num; i++) {
-        printf("%d, ", list[i]);
-    }
+    
+    printf("As quantidades de saladas vendidas foram %d de 5 reais, % d de 7 reais e %d de 10 reais\n", five, seven, ten);
+    printf("A salada mais vendida consecutivamente foi a de %d reais\n", highestcombo);
+
 }
