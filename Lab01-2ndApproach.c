@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int saladCounter(int lista[]) {
+void saladCounter(int lista[]) {
     int fivecounter, sevencounter, tencounter, maxcounter, highest;
 
     fivecounter = sevencounter = tencounter = maxcounter = 0;
@@ -36,7 +36,7 @@ int saladCounter(int lista[]) {
         }
     }
 
-    return highest;    
+    printf("James vendeu %d saladas de %d reais consecutivamente\n", maxcounter, highest);    
 }
 
 int fiveQuantities(int lista[], int listlength) {
@@ -52,7 +52,7 @@ int fiveQuantities(int lista[], int listlength) {
 int sevenQuantities(int lista[], int listlength) {
     int seven = 0;
     for(int i = 0; i < listlength; i++) {
-        if (lista[i] == 5) {
+        if (lista[i] == 7) {
             seven++;
         }
     } 
@@ -62,7 +62,7 @@ int sevenQuantities(int lista[], int listlength) {
 int tenQuantities(int lista[], int listlength) {
     int ten = 0;
     for(int i = 0; i < listlength; i++) {
-        if (lista[i] == 5) {
+        if (lista[i] == 10) {
             ten++;
         }
     } 
@@ -71,17 +71,18 @@ int tenQuantities(int lista[], int listlength) {
 
 int main() {
     int num, sellArray[10000];
-    int highestcombo = saladCounter(sellArray);
-    int five = fiveQuantities(sellArray, num);
-    int seven = sevenQuantities(sellArray, num);
-    int ten = tenQuantities(sellArray, num);
 
     scanf("%d", &num);
     for (int i = 0; i < num; i++) {
         scanf("%d", &sellArray[i]);
     };
     
-    printf("As quantidades de saladas vendidas foram %d de 5 reais, % d de 7 reais e %d de 10 reais\n", five, seven, ten);
-    printf("A salada mais vendida consecutivamente foi a de %d reais\n", highestcombo);
+    int five = fiveQuantities(sellArray, num);
+    int seven = sevenQuantities(sellArray, num);
+    int ten = tenQuantities(sellArray, num);
+
+    
+    printf("James vendeu %d saladas de 5 reais, %d de 7 reais e %d de 10 reais\n", five, seven, ten);
+    saladCounter(sellArray);
 
 }
